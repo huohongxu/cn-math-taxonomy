@@ -521,6 +521,9 @@ body:not(.page-explore) .site-header {
   .brand-name { font-size: 1.02rem; }
   .brand-kicker { font-size: 0.72rem; letter-spacing: 0.06em; }
   .site-nav { flex: 1 1 100%; justify-content: space-between; gap: 4px 8px; }
+  .subject-switch { display: flex; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .subject-switch::-webkit-scrollbar { display: none; }
+  .subject-switch .nav-link { flex: none; }
   .nav-link { padding: 0 8px; font-size: 0.9rem; }
   .nav-link.subject-link { padding: 0 12px; }
 }

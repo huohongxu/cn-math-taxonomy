@@ -3,13 +3,14 @@
  * 改了 SHELL 或 DATA 列表、或数据结构变了，就把 VERSION 加一。 */
 'use strict';
 
-var VERSION = 'v7';
+var VERSION = 'v8';
 var CACHE = 'cnm-pwa-' + VERSION;
 var SCOPE = self.registration.scope;
 
 var SHELL = [
   './',
   'index.html',
+  'home.html',
   'explore/',
   'explore/app.js',
   'diagnose/',
@@ -46,7 +47,19 @@ var DATA = [
   'data/dependencies.json',
   'data/cn-curriculum-standards.json',
   'data/questions.json',
-  'data/id-aliases.json'
+  'data/id-aliases.json',
+  // 手机版入口数据：首屏只需 meta + 当前学科索引，详情在打开知识点时按需缓存
+  'data/mobile/meta.js',
+  'data/mobile/index-math.js',
+  'data/mobile/index-chinese.js',
+  'data/mobile/index-science.js',
+  'data/mobile/index-morality.js',
+  'data/mobile/index-history.js',
+  'data/mobile/index-geography.js',
+  'data/mobile/index-biology.js',
+  'data/mobile/index-chemistry.js',
+  'data/mobile/index-english.js',
+  'data/mobile/index-physics.js'
 ];
 
 function abs(path) { return new URL(path, SCOPE).href; }
@@ -120,6 +133,10 @@ self.addEventListener('fetch', function (event) {
     return;
   }
   if (/\.(?:json|png|svg|ico|webmanifest)$/.test(url.pathname)) {
+    event.respondWith(staleWhileRevalidate(req));
+    return;
+  }
+  if (/\/data\/mobile\/[^/]+\.js$/.test(url.pathname)) {
     event.respondWith(staleWhileRevalidate(req));
     return;
   }

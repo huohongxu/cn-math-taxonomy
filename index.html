@@ -2,155 +2,866 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>中小学·高中知识图谱</title>
-<meta name="description" content="数学（小学到高中）、语文（小学一至六年级）、科学（小学一至六年级）、道德与法治（小学一至六年级）、历史（初中七至九年级）、地理（初中七至八年级）、生物（初中七至八年级）、化学（初中九年级）、英语（三年级到高中）和物理（初中、高中）的知识图谱。沿先修关系自适应出题，从选中的知识点往回找到薄弱根因。">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>知识图谱 · 中小学与高中</title>
+<meta name="theme-color" content="#f7f7f4">
+<meta name="description" content="中小学与高中知识图谱：10 个学科、按册浏览、先修关系与自适应诊断。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23dff3ef%22%20stroke%3D%22%230f6e62%22%20stroke-width%3D%221.7%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6.6%204.8H17L27.4%2015.2V25Q27.4%2027.4%2025.2%2027.4H6.6Q4.4%2027.4%204.4%2025.2V7Q4.4%204.8%206.6%204.8Z%22%2F%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M17.7%206.3%2026.1%2014.7H17.7Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%230f6e62%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M17.7%206.3V14.7H26.1%22%2F%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%230f6e62%22%20stroke-width%3D%222.15%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M8.3%2024.2H12.4Q14.2%2024.2%2014.2%2022.4V20.2Q14.2%2018.6%2016%2018.6H18.8%22%2F%3E%3Cpath%20fill%3D%22%230f6e62%22%20d%3D%22M18.5%2016.85%2023%2018.6%2018.5%2020.35Z%22%2F%3E%3C%2Fsvg%3E">
-<script>
-(function () {
-  var id = location.hash.replace(/^#/, '');
-  try { id = decodeURIComponent(id); } catch (e) { return; }
-  if (/^cnm_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/#' + encodeURIComponent(id));
-  } else if (/^cne_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=english#' + encodeURIComponent(id));
-  } else if (/^cnp_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=physics#' + encodeURIComponent(id));
-  } else if (/^cns_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=science#' + encodeURIComponent(id));
-  } else if (/^cnc_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=chinese#' + encodeURIComponent(id));
-  } else if (/^cnd_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=morality#' + encodeURIComponent(id));
-  } else if (/^cnh_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=history#' + encodeURIComponent(id));
-  } else if (/^cng_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=geography#' + encodeURIComponent(id));
-  } else if (/^cnb_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=biology#' + encodeURIComponent(id));
-  } else if (/^cnk_[A-Za-z0-9]+$/.test(id)) {
-    document.documentElement.style.visibility = 'hidden';
-    location.replace('explore/?subject=chemistry#' + encodeURIComponent(id));
-  }
-})();
-</script>
-<link rel="stylesheet" href="assets/site.css">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-<meta name="theme-color" content="#0f6e62">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="知识图谱">
 <link rel="stylesheet" href="assets/pwa.css">
+<style>
+:root{
+  --brand:#0f6e62; --brand-soft:#e6f4f1; --brand-strong:#0c574e;
+  --ink:#1c2321; --sub:#7a8580; --faint:#a4aca8;
+  --line:#e9e8e3; --paper:#f7f7f4; --card:#fff;
+  --radius:18px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{
+  background:#eae9e5;color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+button,input{font:inherit;color:inherit}
+button{border:0;background:none;cursor:pointer;padding:0}
+a{color:inherit;text-decoration:none}
+.stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:22px 12px}
+.stage-hint{margin:0;font-size:11px;color:#8b918d;letter-spacing:.04em}
+.phone{
+  width:100%;max-width:430px;height:min(852px,calc(100vh - 76px));
+  background:var(--paper);border-radius:34px;overflow:hidden;position:relative;
+  display:flex;flex-direction:column;
+  box-shadow:0 26px 70px rgba(28,35,33,.16),0 0 0 1px rgba(28,35,33,.07);
+  transition:background-color .25s ease;
+}
+@media (max-width:480px){
+  .stage{display:block;padding:0;min-height:100vh}
+  .phone{max-width:none;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
+  .stage-hint{display:none}
+}
+
+/* ---------- 顶栏 ---------- */
+.app-bar{
+  flex:none;height:58px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);z-index:2;
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand svg{width:26px;height:26px;flex:none;color:var(--brand);transition:color .25s}
+.brand-txt{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.brand-txt strong{font-size:14px;font-weight:650;letter-spacing:.02em}
+.brand-txt span{font-size:10.5px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-tag{
+  font-size:10px;color:var(--brand);background:var(--brand-soft);
+  padding:4px 9px;border-radius:999px;font-weight:600;white-space:nowrap;
+  transition:background-color .25s,color .25s;
+}
+
+/* ---------- 内容区 ---------- */
+.screen{flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:0 18px 26px;scrollbar-width:none}
+.screen::-webkit-scrollbar,.sheet-scroll::-webkit-scrollbar{display:none}
+.view{animation:viewIn .26s ease-out both}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pad-top{padding-top:20px}
+.sec{margin-top:26px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 11px}
+.sec-head h2{margin:0;font-size:14px;font-weight:650;letter-spacing:.02em}
+.sec-head span{font-size:11px;color:var(--faint)}
+
+/* Hero */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:6px;font-size:10.5px;letter-spacing:.08em;
+  color:var(--brand);background:var(--brand-soft);padding:5px 10px;border-radius:999px;font-weight:600;
+  transition:background-color .25s,color .25s;
+}
+.eyebrow i{width:5px;height:5px;border-radius:50%;background:currentColor;font-style:normal}
+.hero h1{margin:15px 0 9px;font-size:26px;line-height:1.34;font-weight:700;letter-spacing:-.02em}
+.hero p{margin:0;color:var(--sub);font-size:12.5px;line-height:1.75}
+.hero-actions{display:flex;gap:9px;margin-top:18px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:42px;padding:0 16px;border-radius:12px;font-size:12.5px;font-weight:600;
+  transition:transform .14s ease,background-color .2s,color .2s;
+}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--brand);color:#fff;flex:1;transition:background-color .25s,transform .14s}
+.btn-quiet{background:#fff;color:var(--ink);border:1px solid var(--line);flex:1}
+
+/* 统计 */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stat{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 15px 13px;
+  animation:cardIn .38s ease-out both;
+}
+.stat:nth-child(2){animation-delay:.05s}.stat:nth-child(3){animation-delay:.1s}.stat:nth-child(4){animation-delay:.15s}
+@keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.stat b{display:block;font-size:24px;line-height:1.15;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat b em{font-size:11px;font-style:normal;color:var(--faint);font-weight:500;margin-left:3px;letter-spacing:0}
+.stat span{display:block;margin-top:5px;font-size:11px;color:var(--sub)}
+
+/* 学科切换 */
+.chips{display:flex;gap:7px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:none;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;
+  border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:550;
+  color:var(--sub);white-space:nowrap;transition:all .18s ease;
+}
+.chip:active{transform:scale(.96)}
+.chip i{width:7px;height:7px;border-radius:50%;background:var(--dot,#ccc);font-style:normal}
+.chip.on{background:var(--brand-soft);border-color:transparent;color:var(--brand);font-weight:650}
+.chip.on i{background:currentColor}
+
+/* 当前学科卡 */
+.subject-card{
+  margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+  box-shadow:0 6px 20px rgba(28,35,33,.035);
+}
+.sc-top{display:flex;align-items:center;gap:12px;padding:16px 16px 12px}
+.sc-mark{
+  width:42px;height:42px;flex:none;border-radius:13px;display:grid;place-items:center;
+  background:var(--brand-soft);color:var(--brand);font-size:17px;font-weight:700;
+  transition:background-color .25s,color .25s;
+}
+.sc-name{font-size:15px;font-weight:650;line-height:1.3}
+.sc-range{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.5}
+.sc-note{font-size:10.5px;color:var(--faint);line-height:1.55;padding:0 16px 12px}
+.sc-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.sc-stats div{padding:11px 4px;text-align:center;border-right:1px solid var(--line)}
+.sc-stats div:last-child{border-right:0}
+.sc-stats b{display:block;font-size:15px;font-weight:650;font-variant-numeric:tabular-nums}
+.sc-stats span{display:block;font-size:9.5px;color:var(--faint);margin-top:2px}
+.sc-bar{padding:11px 16px 14px;border-top:1px solid var(--line);background:#fcfcfa}
+.sc-bar-txt{display:flex;justify-content:space-between;font-size:10.5px;color:var(--sub);margin-bottom:7px}
+.track{height:5px;border-radius:99px;background:#eceeea;overflow:hidden}
+.track i{display:block;height:100%;border-radius:99px;background:var(--brand);transition:width .5s cubic-bezier(.22,1,.36,1),background-color .25s}
+
+/* 三步 */
+.steps{position:relative;padding-left:2px}
+.step{display:flex;gap:12px;position:relative;padding-bottom:16px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:13px;top:28px;bottom:0;width:1px;background:var(--line)}
+.step:last-child::before{display:none}
+.step-no{
+  width:27px;height:27px;flex:none;border-radius:50%;display:grid;place-items:center;
+  background:var(--brand-soft);color:var(--brand);font-size:11px;font-weight:700;z-index:1;
+  transition:background-color .25s,color .25s;
+}
+.step h3{margin:2px 0 3px;font-size:12.5px;font-weight:650}
+.step p{margin:0;font-size:11.5px;color:var(--sub);line-height:1.65}
+
+/* 链接行 */
+.links{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.link-row{display:flex;align-items:center;gap:11px;padding:13px 14px;border-bottom:1px solid var(--line);min-height:52px}
+.link-row:last-child{border-bottom:0}
+.link-row:active{background:#fafaf8}
+.link-ico{width:28px;height:28px;flex:none;border-radius:9px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;transition:background-color .25s,color .25s}
+.link-ico svg{width:15px;height:15px}
+.link-txt{flex:1;min-width:0}
+.link-txt b{display:block;font-size:12.5px;font-weight:600}
+.link-txt span{display:block;font-size:10.5px;color:var(--faint);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.link-arrow{color:var(--faint);font-size:15px;line-height:1}
+.foot-note{margin:18px 0 0;font-size:10.5px;color:var(--faint);line-height:1.7;text-align:center}
+
+/* ---------- 浏览 ---------- */
+.page-title{margin:20px 0 4px;font-size:21px;font-weight:700;letter-spacing:-.02em}
+.page-sub{margin:0 0 16px;font-size:11.5px;color:var(--sub)}
+.groups{display:flex;flex-direction:column;gap:9px}
+.group{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.group-head{display:flex;align-items:center;gap:10px;width:100%;min-height:50px;padding:0 14px;text-align:left}
+.group-head:active{background:#fafaf8}
+.group-dot{width:7px;height:7px;border-radius:50%;background:var(--brand);flex:none;transition:background-color .25s}
+.group-title{flex:1;font-size:13px;font-weight:600}
+.group-count{font-size:10.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+.chev{width:14px;height:14px;color:var(--faint);transition:transform .24s ease}
+.group.open .chev{transform:rotate(90deg)}
+.group-body{border-top:1px solid var(--line);padding:4px 14px 12px;animation:viewIn .22s ease-out both}
+.chapter{padding:10px 0 2px}
+.chapter-name{font-size:10.5px;color:var(--brand);font-weight:600;margin-bottom:6px;line-height:1.5}
+.topic-row{
+  display:block;width:100%;text-align:left;padding:9px 10px;margin:0 0 4px;
+  border-left:2px solid var(--line);background:#fbfbf9;border-radius:0 9px 9px 0;
+}
+.topic-row:active{background:var(--brand-soft)}
+.topic-name{display:block;font-size:12px;font-weight:550;line-height:1.45}
+.topic-meta{display:block;font-size:10px;color:var(--faint);margin-top:2px}
+
+/* ---------- 搜索 ---------- */
+.search-box{
+  display:flex;align-items:center;gap:9px;height:44px;padding:0 13px;margin-top:18px;
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+}
+.search-box:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.search-box svg{width:16px;height:16px;color:var(--faint);flex:none}
+.search-box input{flex:1;min-width:0;border:0;outline:0;background:none;font-size:13px}
+.search-box input::placeholder{color:var(--faint)}
+.search-box input::-webkit-search-cancel-button,.search-box input::-webkit-search-decoration{-webkit-appearance:none;appearance:none}
+.search-clear{color:var(--faint);font-size:16px;line-height:1;padding:4px}
+.hot{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.hot button{font-size:11px;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 11px}
+.hot button:active{background:var(--brand-soft);color:var(--brand)}
+.result-count{font-size:10.5px;color:var(--faint);margin:16px 0 8px}
+.results{display:flex;flex-direction:column;gap:7px}
+.result{
+  display:flex;align-items:center;gap:10px;text-align:left;width:100%;
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 12px;
+}
+.result:active{background:#fafaf8}
+.result i{width:8px;height:8px;border-radius:50%;flex:none;background:var(--dot,#ccc)}
+.result-main{flex:1;min-width:0}
+.result-main b{display:block;font-size:12.5px;font-weight:600;line-height:1.4}
+.result-main span{display:block;font-size:10px;color:var(--faint);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.result-sub{font-size:10px;color:var(--sub);flex:none}
+.empty{text-align:center;padding:42px 20px;color:var(--faint)}
+.empty svg{width:38px;height:38px;opacity:.5;margin-bottom:10px}
+.empty p{margin:0;font-size:12px;line-height:1.7}
+
+/* ---------- 关于 ---------- */
+.about-hero{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px 18px;margin-top:18px}
+.about-hero h2{margin:12px 0 8px;font-size:18px;font-weight:700}
+.about-hero p{margin:0;font-size:12px;color:var(--sub);line-height:1.8}
+.about-badge{display:inline-block;font-size:10px;color:var(--brand);background:var(--brand-soft);padding:4px 9px;border-radius:999px;font-weight:600}
+.kv{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.kv-row{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:11.5px}
+.kv-row:last-child{border-bottom:0}
+.kv-row span{color:var(--sub)}
+.kv-row b{font-weight:600;font-variant-numeric:tabular-nums}
+.prose{font-size:11.5px;color:var(--sub);line-height:1.85}
+.prose p{margin:0 0 10px}
+.prose strong{color:var(--ink);font-weight:650}
+
+/* ---------- 底部导航 ---------- */
+.tabbar{
+  flex:none;display:grid;grid-template-columns:repeat(4,1fr);
+  background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:3;
+}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:56px;color:var(--faint)}
+.tab svg{width:20px;height:20px;stroke-width:1.7}
+.tab span{font-size:10px;font-weight:550}
+.tab.on{color:var(--brand)}
+.tab.on span{font-weight:650}
+.tab:active{opacity:.6}
+
+/* ---------- 详情浮层 ---------- */
+.sheet-layer{position:absolute;inset:0;z-index:20}
+.sheet-mask{position:absolute;inset:0;background:rgba(24,30,28,.36);opacity:0;transition:opacity .3s ease}
+.sheet-layer.open .sheet-mask{opacity:1}
+.sheet{
+  position:absolute;left:0;right:0;bottom:0;max-height:88%;
+  background:#fff;border-radius:24px 24px 0 0;display:flex;flex-direction:column;
+  transform:translateY(101%);transition:transform .34s cubic-bezier(.22,1,.36,1);
+  box-shadow:0 -12px 40px rgba(24,30,28,.12);
+}
+.sheet-layer.open .sheet{transform:none}
+.handle{width:36px;height:4px;border-radius:99px;background:#dcded9;margin:10px auto 4px;flex:none}
+.sheet-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px 18px 18px;overscroll-behavior:contain}
+.sheet-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag{font-size:10px;color:var(--sub);background:#f4f5f2;border-radius:6px;padding:3px 8px}
+.tag.accent{color:var(--brand);background:var(--brand-soft)}
+.sheet-scroll h2{margin:11px 0 3px;font-size:20px;line-height:1.4;font-weight:700;letter-spacing:-.01em}
+.mono{font-size:10.5px;color:var(--faint);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.block{margin-top:20px}
+.block h3{margin:0 0 9px;font-size:11px;color:var(--faint);font-weight:650;letter-spacing:.06em}
+.block p{margin:0;font-size:12.5px;line-height:1.8;color:var(--ink)}
+.checks{display:flex;flex-direction:column;gap:7px}
+.check{display:flex;gap:8px;font-size:12px;line-height:1.65}
+.check i{flex:none;width:15px;height:15px;margin-top:2px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-style:normal;font-size:9px;display:grid;place-items:center}
+.pre-item{display:block;width:100%;text-align:left;background:#fafbf9;border:1px solid var(--line);border-radius:12px;padding:10px 11px;margin-bottom:7px}
+.pre-item:active{background:var(--brand-soft)}
+.pre-top{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600}
+.pre-top em{font-style:normal;font-size:9.5px;padding:2px 6px;border-radius:5px;background:#eef0ec;color:var(--sub);font-weight:500}
+.pre-top em.hard{background:var(--brand-soft);color:var(--brand)}
+.pre-why{display:block;margin-top:4px;font-size:10.5px;color:var(--faint);line-height:1.55}
+.quote{background:#fafbf9;border-left:3px solid var(--brand);border-radius:0 10px 10px 0;padding:10px 12px;margin-bottom:7px}
+.quote b{display:block;font-size:10px;color:var(--brand);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-bottom:4px}
+.quote p{margin:0;font-size:11.5px;line-height:1.7;color:var(--sub)}
+.q-card{background:#fafbf9;border:1px solid var(--line);border-radius:14px;padding:14px}
+.q-label{font-size:10px;color:var(--faint);margin-bottom:8px}
+.q-prompt{font-size:13px;line-height:1.75;font-weight:550}
+.q-options{display:flex;flex-direction:column;gap:7px;margin-top:11px}
+.q-opt{display:flex;gap:9px;align-items:flex-start;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:12px;line-height:1.55}
+.q-opt b{color:var(--sub);font-size:11px;flex:none}
+.q-opt:active{border-color:var(--brand)}
+.q-opt.right{background:var(--brand-soft);border-color:transparent;color:var(--brand-strong)}
+.q-opt.wrong{background:#fff2f0;border-color:#f4c9c2;color:#a6362a}
+.q-reveal{margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);font-size:11.5px;line-height:1.7;color:var(--sub)}
+.q-reveal strong{color:var(--brand)}
+.q-action{margin-top:11px;background:var(--brand);color:#fff;border-radius:10px;padding:9px 14px;font-size:11.5px;font-weight:600}
+.sheet-actions{flex:none;display:flex;gap:9px;padding:11px 18px calc(13px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}
+.sheet-actions .btn{flex:1;min-height:42px}
+.sheet-actions .btn-ghost{background:#f4f5f2;color:var(--sub)}
+.loading{padding:40px 0;text-align:center;color:var(--faint);font-size:12px}
+.loading i{display:block;width:20px;height:20px;margin:0 auto 12px;border:2px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite}
+.loading.sm{padding:18px 0}
+.loading.sm i{width:16px;height:16px;margin-bottom:8px}
+.skeleton-group{height:52px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);animation:pulse 1.4s ease-in-out infinite}
+@media (max-width:480px){ .pwa-bar{bottom:calc(60px + env(safe-area-inset-bottom,0px))} }
+@keyframes pulse{50%{opacity:.55}}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
 </head>
-<body class="page-home">
-<a class="top-banner" href="https://test.pansgo.com/?from=math-top" target="_blank" rel="noopener">🧠 儿童智商测试</a>
-<header class="site-header">
-  <a class="brand" href="./">
-    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path fill="var(--logo-sheet)" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M6.6 4.8H17L27.4 15.2V25Q27.4 27.4 25.2 27.4H6.6Q4.4 27.4 4.4 25.2V7Q4.4 4.8 6.6 4.8Z"/><path fill="var(--logo-fold)" d="M17.7 6.3 26.1 14.7H17.7Z"/><path fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" d="M17.7 6.3V14.7H26.1"/><path fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" d="M8.3 24.2H12.4Q14.2 24.2 14.2 22.4V20.2Q14.2 18.6 16 18.6H18.8"/><path fill="currentColor" d="M18.5 16.85 23 18.6 18.5 20.35Z"/></svg>
-    <span class="brand-copy">
-      <span class="brand-name">中小学·高中知识图谱</span>
-      <span class="brand-kicker">学习路径</span>
-    </span>
-  </a>
-  <nav class="site-nav" aria-label="主导航">
-    <div class="subject-switch" role="group" aria-label="学科">
-      <a class="nav-link subject-link on" data-subject="math" href="./">数学</a>
-      <a class="nav-link subject-link" data-subject="chinese" href="./?subject=chinese">语文</a>
-      <a class="nav-link subject-link" data-subject="science" href="./?subject=science">科学</a>
-      <a class="nav-link subject-link" data-subject="morality" href="./?subject=morality">道法</a>
-      <a class="nav-link subject-link" data-subject="history" href="./?subject=history">历史</a>
-      <a class="nav-link subject-link" data-subject="geography" href="./?subject=geography">地理</a>
-      <a class="nav-link subject-link" data-subject="biology" href="./?subject=biology">生物</a>
-      <a class="nav-link subject-link" data-subject="chemistry" href="./?subject=chemistry">化学</a>
-      <a class="nav-link subject-link" data-subject="english" href="./?subject=english">英语</a>
-      <a class="nav-link subject-link" data-subject="physics" href="./?subject=physics">物理</a>
-    </div>
-    <div class="page-links">
-      <a class="nav-link active" href="./" aria-current="page">首页</a>
-      <a class="nav-link" href="explore/">知识图谱</a>
-      <a class="nav-link" href="diagnose/">诊断</a>
-      <a class="nav-link" href="children/">档案</a>
-      <a class="nav-link" href="https://github.com/xiaoyang111222/cn-math-taxonomy" target="_blank" rel="noopener noreferrer">关于</a>
-      <a class="nav-link resource-search-btn" href="https://pansgo.com" target="_blank" rel="noopener noreferrer" title="网盘资源搜索">
-        <svg class="resource-search-ico" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M11.5 10.4a5.5 5.5 0 1 0-1.1 1.1l3 3a.75.75 0 0 0 1.06-1.06zM7 11.5A4.5 4.5 0 1 1 7 2.5a4.5 4.5 0 0 1 0 9z"/></svg>资源搜索
-      </a>
-    </div>
-  </nav>
-</header>
-<main class="home">
-  <section class="hero">
-    <p class="eyebrow">数学：小学到高中 · 语文：小学一至六年级 · 科学：小学一至六年级 · 道德与法治：小学一至六年级 · 历史：初中七至九年级 · 地理：初中七至八年级 · 生物：初中七至八年级 · 化学：初中九年级 · 英语：三年级到高中 · 物理：初中到高中</p>
-    <h1>先找到真正没学会的那一步</h1>
-    <p class="lede">沿着先修关系自适应出题。数学从小学追到高中，语文覆盖统编版小学一至六年级，科学覆盖教科版小学一至六年级，道德与法治覆盖统编版小学一至六年级，历史覆盖统编版初中七至九年级，地理覆盖人教版初中七至八年级，生物覆盖人教版初中七至八年级，化学覆盖人教版初中九年级，英语覆盖三年级到高中，物理覆盖初中八、九年级和高中必修、选择性必修。从你选的知识点往回追，定位薄弱根因，并给出一条按学习顺序排起的路径。</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary btn-lg" href="diagnose/">开始诊断</a>
-      <a class="btn btn-lg" href="explore/">浏览知识图谱</a>
-    </div>
-    <p class="quiet-link"><a href="diagnose/?target=cnm_221&amp;demo=1">先看一遍演示：配方法</a></p>
-  </section>
+<body>
+<div class="stage">
+  <div class="phone" id="phone">
+    <header class="app-bar">
+      <div class="brand">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="var(--brand-soft)" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M6.6 4.8H17L27.4 15.2V25Q27.4 27.4 25.2 27.4H6.6Q4.4 27.4 4.4 25.2V7Q4.4 4.8 6.6 4.8Z"/><path fill="#fff" d="M17.7 6.3 26.1 14.7H17.7Z"/><path fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" d="M17.7 6.3V14.7H26.1"/><path fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" d="M8.3 24.2H12.4Q14.2 24.2 14.2 22.4V20.2Q14.2 18.6 16 18.6H18.8"/><path fill="currentColor" d="M18.5 16.85 23 18.6 18.5 20.35Z"/></svg>
+        <div class="brand-txt"><strong>知识图谱</strong><span id="barSub">中小学 · 高中</span></div>
+      </div>
+      <span class="bar-tag" id="barTag">10 学科 · 本地数据</span>
+    </header>
 
-  <h2 class="section-title">三步</h2>
-  <ol class="steps">
-    <li>
-      <span class="step-no">1</span>
-      <h3>选知识点</h3>
-      <p>数学从一年级到高中必修和选择性必修，语文、科学和道德与法治从一年级到六年级，历史从七年级到九年级，地理从七年级到八年级，生物从七年级到八年级，化学在九年级，英语从三年级到高中，物理从八年级上册到高中选择性必修第三册。搜索或按册、章找到想检查的内容。</p>
-    </li>
-    <li>
-      <span class="step-no">2</span>
-      <h3>自适应答题</h3>
-      <p>先问目标本身。答错再出一道同级或更容易的题，仍然错才沿着先修往回追。</p>
-    </li>
-    <li>
-      <span class="step-no">3</span>
-      <h3>找到根因和学习路径</h3>
-      <p>标出薄弱根因和不稳的点，并按年级从低到高排出建议补学的顺序。</p>
-    </li>
-  </ol>
+    <main class="screen" id="screen">
+      <section class="view" id="view-home"></section>
+      <section class="view" id="view-browse" hidden></section>
+      <section class="view" id="view-search" hidden></section>
+      <section class="view" id="view-about" hidden></section>
+    </main>
 
-  <h2 class="section-title">图谱里有什么</h2>
-  <div class="stat-grid" id="stats">
-    <div class="stat-card"><div class="stat-num" id="n-topics">…</div><div class="stat-label">知识点</div></div>
-    <div class="stat-card"><div class="stat-num" id="n-edges">…</div><div class="stat-label">先修边</div></div>
-    <div class="stat-card"><div class="stat-num" id="n-questions">…</div><div class="stat-label">题目</div></div>
-    <div class="stat-card"><div class="stat-num" id="n-standards">…</div><div class="stat-label">课标条目</div></div>
+    <nav class="tabbar" aria-label="主导航">
+      <button class="tab on" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-6h5v6"/></svg><span>概览</span></button>
+      <button class="tab" data-tab="browse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M8 7.5h7M8 11h5"/></svg><span>浏览</span></button>
+      <button class="tab" data-tab="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m15.5 15.5 4.5 4.5"/></svg><span>搜索</span></button>
+      <button class="tab" data-tab="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg><span>关于</span></button>
+    </nav>
+
+    <div class="sheet-layer" id="sheetLayer" hidden>
+      <div class="sheet-mask" data-close="1"></div>
+      <div class="sheet" role="dialog" aria-modal="true" aria-label="知识点详情">
+        <div class="handle"></div>
+        <div class="sheet-scroll" id="sheetScroll"></div>
+        <div class="sheet-actions" id="sheetActions">
+          <button class="btn btn-ghost" data-close="1">关闭</button>
+          <a class="btn btn-primary" id="sheetDiagnose" href="diagnose/">诊断这个知识点</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <p class="stat-note">以上数字在打开页面时从当前学科的知识点、先修、题库和课标统计。默认是数学。</p>
-  <div id="load-error" class="load-error" hidden></div>
+  <p class="stage-hint">宽屏按 430 × 852 预览 · 在手机上打开自动铺满全屏</p>
+</div>
 
-  <section class="blind-home" id="blind-home" hidden>
-    <h2 class="section-title">本机盲区</h2>
-    <p class="muted" id="blind-home-lead">根据本机诊断记录汇总的薄弱 / 不稳知识点。只存在这台浏览器，可一键再测。</p>
-    <ul class="blind-home-list" id="blind-home-list"></ul>
-    <p class="blind-home-actions" id="blind-home-actions"></p>
-  </section>
+<script src="data/mobile/meta.js"></script>
+<script>
+(function () {
+  'use strict';
+  var M = window.__META__;
+  var screenEl = document.getElementById('screen');
+  var phone = document.getElementById('phone');
+  if (!M) {
+    screenEl.innerHTML = '<div class="empty" style="padding-top:80px"><p>数据未加载。<br>请确认 data/mobile/meta.js 与本页面在同一目录。</p></div>';
+    return;
+  }
+  window.__MINDEX__ = window.__MINDEX__ || {};
+  window.__MDETAIL__ = window.__MDETAIL__ || {};
 
-  <h2 class="section-title">按年级进入</h2>
-  <div class="grade-grid" id="grades" aria-busy="true"></div>
-  <a class="iq-card" href="https://test.pansgo.com/?from=math-home" target="_blank" rel="noopener">
-    <strong>🧠 儿童智商测试</strong>
-    <span class="iq-sub">找规律 · 补图案 · 空间想象</span>
-    <span class="iq-note">趣味测评，与数学诊断无关</span>
-  </a>
-</main>
-<footer class="site-footer">
-  <p><a href="https://github.com/xiaoyang111222/cn-math-taxonomy/issues/new/choose">提交 Issue</a></p>
-</footer>
-<script src="assets/children.js"></script>
-<script src="assets/blindspots.js"></script>
-<script src="assets/home.js"></script>
-<script src="assets/stats-config.js"></script>
-<script src="assets/stats.js"></script>
+  var SUB = {}, ORDER = [];
+  M.subjects.forEach(function (s) { SUB[s.id] = s; ORDER.push(s.id); });
+
+  var CN = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+  var DIFF = { basic: '基础题', standard: '提高题', challenge: '拓展题', advanced: '进阶题' };
+  var TYPE = { choice: '选择题', numeric: '填空 / 数值题', short: '简答题' };
+  var state = { tab: 'home', subject: 'math', query: '', open: {}, detailId: null, detailSubject: null, answerShown: false };
+
+  var params = new URLSearchParams(location.search);
+  var initialSubject = params.get('subject');
+  if (initialSubject && SUB[initialSubject]) state.subject = initialSubject;
+
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function darken(hex, ratio) {
+    var m = /^#([0-9a-f]{6})$/i.exec(hex || '');
+    if (!m) return hex;
+    var v = parseInt(m[1], 16), r = (v >> 16) & 255, g = (v >> 8) & 255, b = v & 255;
+    return '#' + [r, g, b].map(function (c) {
+      return ('0' + Math.round(c * ratio).toString(16)).slice(-2);
+    }).join('');
+  }
+  function shortChapter(c) {
+    var parts = String(c || '').split(' ');
+    return parts.length > 1 ? parts.slice(1).join(' ') : (c || '');
+  }
+  function volume(t) {
+    var g = Number(t.g);
+    if (g >= 10) {
+      var head = String(t.c || '').split(' ')[0] || ('第' + g + '册');
+      return { key: 'g' + g, label: head, order: g * 10 };
+    }
+    var term = t.t === '全' ? '全一册' : (t.t === '下' ? '下册' : '上册');
+    return { key: 'g' + g + t.t, label: CN[g] + '年级' + term, order: g * 10 + (t.t === '下' ? 1 : 0) };
+  }
+  function subjectSuffix() { return state.subject === 'math' ? '' : '?subject=' + state.subject; }
+  function diagnoseHref(id, sid) {
+    return 'diagnose/?subject=' + (sid || state.subject) + '&target=' + encodeURIComponent(id);
+  }
+  function exploreHref(id, sid) {
+    var s = sid || state.subject;
+    return 'explore/' + (s === 'math' ? '' : '?subject=' + s) + (id ? '#' + encodeURIComponent(id) : '');
+  }
+  function applyTheme() {
+    var s = SUB[state.subject];
+    phone.style.setProperty('--brand', s.color);
+    phone.style.setProperty('--brand-soft', s.soft);
+    phone.style.setProperty('--brand-strong', darken(s.color, .78));
+    document.getElementById('barSub').textContent = s.name + ' · 本地知识图谱';
+    var meta = document.querySelector('meta[name=theme-color]');
+    if (meta) meta.setAttribute('content', s.color);
+  }
+  function chipRow() {
+    return '<div class="chips">' + M.subjects.map(function (s) {
+      return '<button class="chip' + (s.id === state.subject ? ' on' : '') + '" data-subject="' + s.id + '" style="--dot:' + s.color + '"><i></i>' + esc(s.name) + '</button>';
+    }).join('') + '</div>';
+  }
+
+  /* ---------------- 按需加载 ---------------- */
+  var scripts = {};
+  function loadScript(src) {
+    if (scripts[src]) return scripts[src];
+    scripts[src] = new Promise(function (resolve, reject) {
+      var el = document.createElement('script');
+      el.src = src;
+      el.onload = function () { resolve(); };
+      el.onerror = function () { reject(new Error('load ' + src)); };
+      document.head.appendChild(el);
+    });
+    return scripts[src];
+  }
+  function ensureIndex(sid) {
+    if (window.__MINDEX__[sid]) return Promise.resolve(window.__MINDEX__[sid]);
+    return loadScript('data/mobile/index-' + sid + '.js').then(function () {
+      if (!window.__MINDEX__[sid]) throw new Error('index ' + sid);
+      return window.__MINDEX__[sid];
+    });
+  }
+  function ensureDetail(sid) {
+    if (window.__MDETAIL__[sid]) return Promise.resolve(window.__MDETAIL__[sid]);
+    return loadScript('data/mobile/detail-' + sid + '.js').then(function () {
+      if (!window.__MDETAIL__[sid]) throw new Error('detail ' + sid);
+      return window.__MDETAIL__[sid];
+    });
+  }
+  function allIndex() {
+    return Promise.all(M.subjects.map(function (s) { return ensureIndex(s.id).catch(function () { return null; }); }));
+  }
+  function topicsOf(sid) { return window.__MINDEX__[sid] || []; }
+  function findTopic(id) {
+    for (var i = 0; i < M.subjects.length; i++) {
+      var rows = window.__MINDEX__[M.subjects[i].id];
+      if (!rows) continue;
+      for (var j = 0; j < rows.length; j++) if (rows[j].id === id) return rows[j];
+    }
+    return null;
+  }
+  function groupsOf(sid) {
+    var map = {}, list = [];
+    topicsOf(sid).forEach(function (t) {
+      var v = volume(t);
+      if (!map[v.key]) { map[v.key] = { key: v.key, label: v.label, order: v.order, items: [] }; list.push(map[v.key]); }
+      map[v.key].items.push(t);
+    });
+    list.sort(function (a, b) { return a.order - b.order; });
+    return list;
+  }
+
+  /* ---------------- 概览 ---------------- */
+  function renderHome() {
+    var s = SUB[state.subject], c = M.counts[state.subject], t = M.totals;
+    var pct = Math.max(3, Math.round(c.topics / t.topics * 100));
+    return '<div class="view pad-top">' +
+      '<div class="hero">' +
+        '<span class="eyebrow"><i></i>义务教育 · 普通高中</span>' +
+        '<h1>先找到真正<br>没学会的那一步</h1>' +
+        '<p>' + M.subjects.length + ' 个学科的知识点连成先修关系图。答错时沿依赖往回追，定位薄弱根因，再给出一条按学习顺序排起的路径。</p>' +
+        '<div class="hero-actions">' +
+          '<a class="btn btn-quiet" href="' + exploreHref('') + '">浏览图谱</a>' +
+          '<a class="btn btn-primary" href="diagnose/?subject=' + state.subject + '">开始诊断 →</a>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sec-head"><h2>整站规模</h2><span>来自仓库数据文件</span></div>' +
+        '<div class="stat-grid">' +
+          '<div class="stat"><b>' + fmt(t.topics) + '</b><span>知识点</span></div>' +
+          '<div class="stat"><b>' + fmt(t.edges) + '</b><span>先修边</span></div>' +
+          '<div class="stat"><b>' + fmt(t.questions) + '</b><span>题库题目</span></div>' +
+          '<div class="stat"><b>' + fmt(t.standards) + '</b><span>课标条目</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sec-head"><h2>切换学科</h2><span>共 ' + M.subjects.length + ' 个</span></div>' + chipRow() +
+        '<div class="subject-card">' +
+          '<div class="sc-top"><div class="sc-mark">' + esc(s.mark) + '</div><div><div class="sc-name">' + esc(s.name) + '</div><div class="sc-range">' + esc(s.range) + '</div></div></div>' +
+          '<div class="sc-note">' + esc(s.note) + '</div>' +
+          '<div class="sc-stats">' +
+            '<div><b>' + fmt(c.topics) + '</b><span>知识点</span></div>' +
+            '<div><b>' + fmt(c.edges) + '</b><span>先修边</span></div>' +
+            '<div><b>' + fmt(c.questions) + '</b><span>题目</span></div>' +
+            '<div><b>' + fmt(c.standards) + '</b><span>课标</span></div>' +
+          '</div>' +
+          '<div class="sc-bar"><div class="sc-bar-txt"><span>占全站知识点</span><span>' + pct + '%</span></div><div class="track"><i style="width:' + pct + '%"></i></div></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sec-head"><h2>怎么用</h2><span>三步</span></div>' +
+        '<div class="steps">' +
+          '<div class="step"><span class="step-no">1</span><div><h3>选一个知识点</h3><p>按学科、年级、册、章浏览，或直接搜索名称与章节。</p></div></div>' +
+          '<div class="step"><span class="step-no">2</span><div><h3>自适应答题</h3><p>先问目标本身；答错再出一道同级或更容易的题，仍错才向先修回溯。</p></div></div>' +
+          '<div class="step"><span class="step-no">3</span><div><h3>找到根因与路径</h3><p>标出薄弱根因和不稳的点，按年级从低到高排出补学顺序。</p></div></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sec"><div class="sec-head"><h2>更多入口</h2><span>同源数据</span></div>' +
+        '<div class="links">' + linkRows() + '</div></div>' +
+      '<p class="foot-note">数据来自本仓库 data/*.json · 全部在本机运行</p>' +
+    '</div>';
+  }
+  function linkRows() {
+    return [
+      ['explore/' + subjectSuffix(), '自适应知识图谱', '局部先修图 · 课标 · 样题', 'M4 6h6M4 12h6M4 18h6M14 6h6M14 12h6M14 18h6'],
+      ['diagnose/?subject=' + state.subject, '自适应诊断', '单点 / 整章 / 整册筛查', 'M12 3v18M3 12h18'],
+      ['children/', '孩子档案', '本机记录 · 盲区与历史', 'M4 5h16v14H4zM8 9h8M8 13h5'],
+      ['home.html' + (state.subject === 'math' ? '' : '?subject=' + state.subject), '桌面版首页', '宽屏布局与全部入口', 'M4 4h16v12H4zM8 20h8M12 16v4']
+    ].map(function (r) {
+      return '<a class="link-row" href="' + r[0] + '"><span class="link-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="' + r[3] + '"/></svg></span><span class="link-txt"><b>' + r[1] + '</b><span>' + r[2] + '</span></span><span class="link-arrow">›</span></a>';
+    }).join('');
+  }
+
+  /* ---------------- 浏览 ---------------- */
+  function renderBrowse() {
+    var rows = window.__MINDEX__[state.subject];
+    if (!rows) {
+      return '<div class="view"><h1 class="page-title">按册浏览</h1><p class="page-sub">正在载入 ' + esc(SUB[state.subject].name) + ' 知识点…</p>' +
+        '<div class="groups">' + new Array(5).join('<div class="skeleton-group"></div>') + '</div>' +
+        '<div class="loading sm"><i></i>首次加载后会被缓存</div></div>';
+    }
+    var groups = groupsOf(state.subject);
+    var body = groups.map(function (g) {
+      var open = !!state.open[g.key];
+      var inner = '';
+      if (open) {
+        var chapters = {}, cList = [];
+        g.items.forEach(function (t) {
+          if (!chapters[t.c]) { chapters[t.c] = []; cList.push(t.c); }
+          chapters[t.c].push(t);
+        });
+        inner = '<div class="group-body">' + cList.map(function (c) {
+          return '<div class="chapter"><div class="chapter-name">' + esc(shortChapter(c)) + '</div>' +
+            chapters[c].map(function (t) {
+              return '<button class="topic-row" data-topic="' + esc(t.id) + '"><span class="topic-name">' + esc(t.name) + '</span><span class="topic-meta">' + esc(t.d) + ' · ' + esc(t.id) + '</span></button>';
+            }).join('') + '</div>';
+        }).join('') + '</div>';
+      }
+      return '<section class="group' + (open ? ' open' : '') + '">' +
+        '<button class="group-head" data-group="' + esc(g.key) + '"><span class="group-dot"></span><span class="group-title">' + esc(g.label) + '</span><span class="group-count">' + g.items.length + ' 点</span>' +
+        '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>' + inner + '</section>';
+    }).join('');
+    return '<div class="view">' +
+      '<h1 class="page-title">按册浏览</h1><p class="page-sub">展开册次，查看章节下的知识点与样题</p>' +
+      chipRow() +
+      '<div class="sec" style="margin-top:16px"><div class="groups">' + body + '</div></div>' +
+      '<p class="foot-note">共 ' + groups.length + ' 个册次 · ' + rows.length + ' 个知识点</p>' +
+    '</div>';
+  }
+
+  /* ---------------- 搜索 ---------------- */
+  var HOT = ['配方法', '分数', '二次函数', '一次函数', '光合作用', '牛顿第一定律', '虚拟语气'];
+  function indexesReady() {
+    return M.subjects.every(function (s) { return !!window.__MINDEX__[s.id]; });
+  }
+  function loadedCount() {
+    return M.subjects.filter(function (s) { return !!window.__MINDEX__[s.id]; }).length;
+  }
+  function renderSearch() {
+    return '<div class="view">' +
+      '<h1 class="page-title">找知识点</h1><p class="page-sub">跨学科搜索名称、章节与领域</p>' +
+      '<div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m15.5 15.5 4.5 4.5"/></svg>' +
+      '<input id="searchInput" type="search" autocomplete="off" placeholder="例如：配方法、分数、细胞" value="' + esc(state.query) + '"><button class="search-clear" data-clear="1" aria-label="清空">×</button></div>' +
+      '<div class="hot">' + HOT.map(function (w) { return '<button data-hot="' + esc(w) + '">' + esc(w) + '</button>'; }).join('') + '</div>' +
+      '<div id="searchResults"></div>' +
+    '</div>';
+  }
+  function renderResults() {
+    var box = document.getElementById('searchResults');
+    if (!box) return;
+    var q = state.query.trim().toLowerCase();
+    if (!q) {
+      box.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m15.5 15.5 4.5 4.5"/></svg><p>输入关键词开始搜索<br>试试上面的热门词</p></div>';
+      return;
+    }
+    if (!indexesReady()) {
+      box.innerHTML = '<div class="loading sm" style="padding-top:28px"><i></i>正在载入全学科索引 ' + loadedCount() + ' / ' + M.subjects.length + '</div>';
+      loadAllIndexes();
+      return;
+    }
+    var hits = [];
+    M.subjects.forEach(function (s) {
+      (window.__MINDEX__[s.id] || []).forEach(function (t) {
+        if ((t.name + ' ' + t.c + ' ' + t.d + ' ' + t.id).toLowerCase().indexOf(q) >= 0) hits.push(t);
+      });
+    });
+    var shown = hits.slice(0, 60);
+    box.innerHTML = '<div class="result-count">找到 ' + fmt(hits.length) + ' 个知识点' + (hits.length > 60 ? '，显示前 60 个' : '') + '</div>' +
+      (hits.length ? '<div class="results">' + shown.map(function (t) {
+        var s = SUB[t.s];
+        return '<button class="result" data-topic="' + esc(t.id) + '" style="--dot:' + s.color + '"><i></i><span class="result-main"><b>' + esc(t.name) + '</b><span>' + esc(shortChapter(t.c)) + '</span></span><span class="result-sub">' + esc(s.name) + '</span></button>';
+      }).join('') + '</div>' : '<div class="empty"><p>没有匹配的知识点<br>换个更短的词试试</p></div>');
+  }
+  var loadingAll = false;
+  function loadAllIndexes() {
+    if (loadingAll || indexesReady()) return;
+    loadingAll = true;
+    allIndex().then(function () {
+      loadingAll = false;
+      if (state.tab === 'search') renderResults();
+    });
+  }
+
+  /* ---------------- 关于 ---------------- */
+  function renderAbout() {
+    var rows = M.subjects.map(function (s) {
+      return '<div class="kv-row"><span><i style="display:inline-block;width:7px;height:7px;border-radius:50%;background:' + s.color + ';margin-right:7px"></i>' + esc(s.name) + '</span><b>' + fmt(M.counts[s.id].topics) + ' 点</b></div>';
+    }).join('');
+    return '<div class="view">' +
+      '<div class="about-hero"><span class="about-badge">CC BY-NC 4.0</span><h2>中小学 · 高中知识图谱</h2>' +
+      '<p>对齐义务教育与高中课程标准的知识点 DAG，附自适应前置诊断与题库。答错会沿先修边从高中、初中一直回溯到具体的小学知识点，并给出按年级从低到高排列的学习路径。</p></div>' +
+      '<div class="sec"><div class="sec-head"><h2>各学科知识点</h2><span>共 ' + fmt(M.totals.topics) + ' 个</span></div><div class="kv">' + rows + '</div></div>' +
+      '<div class="sec"><div class="sec-head"><h2>数据来源</h2></div><div class="prose">' +
+        '<p><strong>教材：</strong>人教版、统编版、教科版的一至九年级与高中必修、选择性必修目录。部分册次按第三方公开目录推定，已在 README 标注「待核」。</p>' +
+        '<p><strong>课标：</strong>《义务教育课程标准（2022 年版 2025 年修订）》与《普通高中课程标准（2017 年版）》相关学科的内容要求，多数条目为公开转述，页码待核。</p>' +
+        '<p><strong>题库：</strong>' + fmt(M.totals.questions) + ' 道题，含自动核验与部分独立盲解复核；高中题与部分学科题未做盲解。</p>' +
+        '<p><strong>须知：</strong>知识点粒度、掌握标准与先修关系仍需一线教师审核后才能用于教学或诊断。本页仅作本地预览，所有数据留在本机。</p>' +
+      '</div></div>' +
+      '<div class="sec"><div class="sec-head"><h2>仓库结构</h2></div><div class="kv">' +
+        '<div class="kv-row"><span>data/topics.json</span><b>知识点</b></div>' +
+        '<div class="kv-row"><span>data/dependencies.json</span><b>先修边</b></div>' +
+        '<div class="kv-row"><span>data/questions.json</span><b>题库</b></div>' +
+        '<div class="kv-row"><span>data/cn-curriculum-standards.json</span><b>课标</b></div>' +
+        '<div class="kv-row"><span>explore/ · diagnose/ · children/</span><b>完整站点</b></div>' +
+        '<div class="kv-row"><span>scripts/build_mobile_data.py</span><b>本页数据生成</b></div>' +
+        '<div class="kv-row"><span>home.html</span><b>桌面版首页</b></div>' +
+      '</div></div>' +
+      '<div class="sec"><div class="sec-head"><h2>相关链接</h2></div><div class="links">' +
+        '<a class="link-row" href="home.html' + (state.subject === 'math' ? '' : '?subject=' + state.subject) + '"><span class="link-txt"><b>桌面版首页</b><span>宽屏布局与全部入口</span></span><span class="link-arrow">›</span></a>' +
+        '<a class="link-row" href="README.md"><span class="link-txt"><b>项目 README</b><span>范围、来源与待核清单</span></span><span class="link-arrow">›</span></a>' +
+        '<a class="link-row" href="CHANGELOG.md"><span class="link-txt"><b>变更日志</b><span>按日期记录的数据调整</span></span><span class="link-arrow">›</span></a>' +
+        '<a class="link-row" href="https://github.com/xiaoyang111222/cn-math-taxonomy" target="_blank" rel="noopener"><span class="link-txt"><b>GitHub 仓库</b><span>提交 Issue / 查看源码</span></span><span class="link-arrow">›</span></a>' +
+      '</div></div>' +
+      '<p class="foot-note">页面数据由 scripts/build_mobile_data.py 生成 · 可随时重跑同步</p>' +
+    '</div>';
+  }
+
+  /* ---------------- 详情浮层 ---------------- */
+  function sheetHead(t) {
+    var s = SUB[t.s], v = volume(t);
+    return '<div class="sheet-tags"><span class="tag accent">' + esc(s.name) + '</span><span class="tag">' + esc(v.label) + '</span><span class="tag">' + esc(t.d) + '</span></div>' +
+      '<h2>' + esc(t.name) + '</h2><div class="mono">' + esc(t.id) + '</div>';
+  }
+  function sheetSkeleton(t) {
+    document.getElementById('sheetScroll').innerHTML = sheetHead(t) +
+      '<div class="loading"><i></i>正在载入详情…</div>';
+    document.getElementById('sheetDiagnose').href = diagnoseHref(t.id, t.s);
+  }
+  function renderSheet(t, D) {
+    var d = (D.topics || {})[t.id] || {};
+    var html = sheetHead(t);
+    if (d.desc) html += '<div class="block"><h3>知识点说明</h3><p>' + esc(d.desc) + '</p></div>';
+    if (d.criteria && d.criteria.length) {
+      html += '<div class="block"><h3>掌握标准</h3><div class="checks">' + d.criteria.map(function (c) {
+        return '<div class="check"><i>✓</i><span>' + esc(c) + '</span></div>';
+      }).join('') + '</div></div>';
+    }
+    var pre = d.pre || [];
+    var preHtml;
+    if (pre.length) {
+      preHtml = pre.map(function (p) {
+        var target = findTopic(p.id);
+        return '<button class="pre-item" data-topic="' + esc(p.id) + '"><span class="pre-top"><em class="' + (p.k ? 'hard' : '') + '">' + (p.k ? '硬先修' : '软先修') + '</em>' + esc(target ? target.name : p.id) + '</span><span class="pre-why">' + esc(p.why || '') + '</span></button>';
+      }).join('');
+    } else {
+      preHtml = '<p style="color:var(--faint);font-size:11.5px">' + esc(d.root || '这是图谱的起点，没有更早的先修知识点。') + '</p>';
+    }
+    html += '<div class="block"><h3>先修知识点 · ' + pre.length + '</h3>' + preHtml + '</div>';
+
+    var stds = t.st || [];
+    if (stds.length) {
+      html += '<div class="block"><h3>对应课标</h3>' + stds.map(function (id) {
+        var item = (D.standards || {})[id];
+        return '<div class="quote"><b>' + esc(id) + '</b><p>' + (item ? esc(item.text) : '条目正文见仓库课标文件') + '</p></div>';
+      }).join('') + '</div>';
+    }
+    var q = d.q;
+    if (q) {
+      html += '<div class="block"><h3>题库样题</h3><div class="q-card">' +
+        '<div class="q-label">' + esc(DIFF[q.difficulty] || '样题') + ' · ' + esc(TYPE[q.type] || '题目') + '</div>' +
+        '<div class="q-prompt">' + esc(q.prompt) + '</div>';
+      if (q.choices && q.choices.length) {
+        html += '<div class="q-options">' + q.choices.map(function (c) {
+          return '<button class="q-opt" data-choice="' + esc(c.key) + '" data-answer="' + esc(q.answer) + '"><b>' + esc(c.key) + '</b><span>' + esc(c.text) + '</span></button>';
+        }).join('') + '</div>';
+      } else {
+        html += '<button class="q-action" data-reveal="' + esc(q.answer) + '">查看答案</button>';
+      }
+      html += '<div class="q-reveal" id="qReveal" hidden></div></div></div>';
+    }
+    html += '<div class="block"><h3>所在章节</h3><p style="font-size:12px;color:var(--sub)">' + esc(t.c) + '</p>' +
+      '<a class="link-row" style="margin-top:10px;border:1px solid var(--line);border-radius:12px" href="' + exploreHref(t.id, t.s) + '"><span class="link-txt"><b>在完整知识图谱中查看</b><span>局部先修图 · 详情</span></span><span class="link-arrow">›</span></a></div>';
+    document.getElementById('sheetScroll').innerHTML = html;
+    document.getElementById('sheetScroll').scrollTop = 0;
+  }
+  function openTopic(id) {
+    var t = findTopic(id);
+    if (!t) {
+      var sid = subjectOfId(id) || state.subject;
+      if (window.__MINDEX__[sid]) return;
+      ensureIndex(sid).then(function () {
+        if (findTopic(id)) openTopic(id);
+      }).catch(function () { /* 索引缺失时静默 */ });
+      return;
+    }
+    state.detailId = id;
+    state.detailSubject = t.s;
+    state.answerShown = false;
+    sheetSkeleton(t);
+    var layer = document.getElementById('sheetLayer');
+    layer.hidden = false;
+    requestAnimationFrame(function () { layer.classList.add('open'); });
+    ensureDetail(t.s).then(function (D) {
+      if (state.detailId === id) renderSheet(t, D);
+    }).catch(function () {
+      var box = document.getElementById('sheetScroll');
+      var load = box && box.querySelector('.loading');
+      if (load) load.innerHTML = '详情数据未加载，请刷新或通过本地服务器打开。';
+    });
+  }
+  function subjectOfId(id) {
+    var m = /^(cn[a-z])_/.exec(String(id));
+    if (!m) return null;
+    var map = { cnm: 'math', cnc: 'chinese', cns: 'science', cnd: 'morality', cnh: 'history',
+      cng: 'geography', cnb: 'biology', cnk: 'chemistry', cne: 'english', cnp: 'physics' };
+    return map[m[1]] || null;
+  }
+  function closeSheet() {
+    var layer = document.getElementById('sheetLayer');
+    layer.classList.remove('open');
+    setTimeout(function () { layer.hidden = true; state.detailId = null; }, 320);
+  }
+
+  /* ---------------- 视图与事件 ---------------- */
+  function render(tab, keepScroll) {
+    var top = keepScroll ? screenEl.scrollTop : 0;
+    ['home', 'browse', 'search', 'about'].forEach(function (name) {
+      document.getElementById('view-' + name).hidden = name !== tab;
+    });
+    var view = document.getElementById('view-' + tab);
+    view.innerHTML = tab === 'home' ? renderHome() : tab === 'browse' ? renderBrowse() : tab === 'search' ? renderSearch() : renderAbout();
+    if (tab === 'browse' && !window.__MINDEX__[state.subject]) {
+      ensureIndex(state.subject).then(function () {
+        if (state.tab === 'browse') render('browse', true);
+      });
+    }
+    if (tab === 'search') { renderResults(); loadAllIndexes(); }
+    document.querySelectorAll('.tab').forEach(function (b) { b.classList.toggle('on', b.dataset.tab === tab); });
+    screenEl.scrollTop = top;
+    var chip = document.querySelector('#view-' + tab + ' .chip.on');
+    if (chip && chip.parentElement) {
+      var row = chip.parentElement;
+      row.scrollLeft = Math.max(0, chip.offsetLeft - row.clientWidth / 2 + chip.clientWidth / 2);
+    }
+  }
+  function switchTab(tab) {
+    if (state.tab === tab) { screenEl.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    state.tab = tab;
+    render(tab, false);
+  }
+
+  document.addEventListener('click', function (e) {
+    var el;
+    if ((el = e.target.closest('[data-tab]'))) { switchTab(el.dataset.tab); return; }
+    if ((el = e.target.closest('[data-subject]'))) {
+      state.subject = el.dataset.subject;
+      state.open = {};
+      applyTheme();
+      render(state.tab, true);
+      return;
+    }
+    if ((el = e.target.closest('[data-group]'))) {
+      var key = el.dataset.group;
+      state.open[key] = !state.open[key];
+      render('browse', true);
+      return;
+    }
+    if ((el = e.target.closest('[data-hot]'))) {
+      state.query = el.dataset.hot;
+      var input = document.getElementById('searchInput');
+      if (input) input.value = state.query;
+      renderResults();
+      return;
+    }
+    if (e.target.closest('[data-clear]')) {
+      state.query = '';
+      var box = document.getElementById('searchInput');
+      if (box) { box.value = ''; box.focus(); }
+      renderResults();
+      return;
+    }
+    if ((el = e.target.closest('[data-topic]'))) { openTopic(el.dataset.topic); return; }
+    if ((el = e.target.closest('[data-choice]'))) {
+      if (state.answerShown) return;
+      state.answerShown = true;
+      var correct = el.dataset.answer;
+      document.querySelectorAll('[data-choice]').forEach(function (b) {
+        if (b.dataset.choice === correct) b.classList.add('right');
+        else if (b === el) b.classList.add('wrong');
+      });
+      var reveal = document.getElementById('qReveal');
+      if (reveal) {
+        var right = (document.querySelector('[data-choice].right span') || {}).textContent || '';
+        var d = window.__MDETAIL__[state.detailSubject] || {};
+        var qq = ((d.topics || {})[state.detailId] || {}).q || {};
+        reveal.hidden = false;
+        reveal.innerHTML = '<strong>参考答案：' + esc(correct) + (right ? ' · ' + esc(right) : '') + '</strong><br>' + esc(qq.explanation || '');
+      }
+      return;
+    }
+    if ((el = e.target.closest('[data-reveal]'))) {
+      var r = document.getElementById('qReveal');
+      if (r) {
+        var dd = window.__MDETAIL__[state.detailSubject] || {};
+        var qq2 = ((dd.topics || {})[state.detailId] || {}).q || {};
+        r.hidden = false;
+        r.innerHTML = '<strong>参考答案：' + esc(el.dataset.reveal) + '</strong><br>' + esc(qq2.explanation || '');
+      }
+      el.hidden = true;
+      return;
+    }
+    if (e.target.closest('[data-close]')) { closeSheet(); return; }
+  });
+
+  document.addEventListener('input', function (e) {
+    if (e.target.id === 'searchInput') {
+      state.query = e.target.value;
+      renderResults();
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !document.getElementById('sheetLayer').hidden) closeSheet();
+  });
+
+  applyTheme();
+  render('home', false);
+
+  /* 深链：#cnm_221 直接打开知识点；?subject=chinese 指定学科 */
+  var hashId = location.hash.replace(/^#/, '');
+  if (hashId) {
+    try { hashId = decodeURIComponent(hashId); } catch (err) { hashId = ''; }
+    if (/^cn[a-z]_[A-Za-z0-9]+$/.test(hashId)) setTimeout(function () { openTopic(hashId); }, 0);
+  }
+})();
+</script>
 <script src="assets/pwa.js"></script>
 </body>
 </html>
